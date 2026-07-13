@@ -58,11 +58,20 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Coolvetica is display-only: h1/h2 and short accents. Never body copy. */
+/* Coolvetica is display-only: h1/h2 and short accents. Never body copy.
+   The face ships very tight by default — it needs air to stay legible at size
+   (without it, "Il" collapses into a single glyph). */
 h1,
 h2,
 .font-display {
   font-family: var(--font-coolvetica), Helvetica, Arial, sans-serif;
+  letter-spacing: 0.02em;
+  word-spacing: 0.08em;
+}
+
+h1 {
+  letter-spacing: 0.015em;
+  line-height: 1.12;
 }
 
 /* The brand's signature CTA: gold gradient, NAVY text, gold-tinted glow. */

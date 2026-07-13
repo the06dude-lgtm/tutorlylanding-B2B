@@ -11,9 +11,9 @@ const coolvetica = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Tutorly — Tutoring per scuole, agenzie e tutor",
+  title: "Tutorly — Lancia le tue ripetizioni, senza costruirle",
   description:
-    "Tutor verificati dalle migliori università italiane. Scuole e agenzie attivano ripetizioni online senza costruire nulla da zero. Tutor: sali di livello, guadagna di più.",
+    "La tua agenzia non offre tutoring? Con Tutorly lo attivi in pochi giorni: tutor verificati, aule virtuali e pagamenti già pronti. Per i tutor: sali di livello, guadagna di più.",
 };
 
 export default function RootLayout({

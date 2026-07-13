@@ -2,20 +2,20 @@ import Reveal from "./Reveal";
 
 const STEPS = [
   {
-    title: "Ci parli dei tuoi studenti",
-    body: "Materie, livelli, volumi. Capiamo cosa ti serve e in quali fasce sei scoperto.",
+    title: "Ci dici cosa ti chiedono",
+    body: "Materie, livelli, volumi. Capiamo quale domanda stai già perdendo.",
   },
   {
     title: "Attiviamo la rete",
-    body: "Selezioniamo i tutor verificati adatti al tuo bacino. Nessun reclutamento da parte tua.",
+    body: "Selezioniamo i tutor verificati adatti ai tuoi clienti. Nessun reclutamento da parte tua.",
   },
   {
-    title: "Gli studenti prenotano",
+    title: "Vendi il servizio come tuo",
     body: "Aule virtuali, calendario e pagamenti sono già inclusi. Tu non gestisci nulla.",
   },
   {
-    title: "Ricevi i report",
-    body: "Ore erogate, feedback e risultati. Dati pronti da condividere con chi decide.",
+    title: "Incassi e ricevi i report",
+    body: "Ore erogate, feedback e risultati. Una linea di ricavi in più, senza costi fissi.",
   },
 ];
 
@@ -23,7 +23,7 @@ export default function HowItWorks() {
   return (
     <section id="come-funziona" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
       <Reveal>
-        <h2 className="text-3xl font-black tracking-tight md:text-5xl">
+        <h2 className="text-3xl font-black md:text-5xl">
           Quattro passi. <span className="text-[var(--gold)]">Zero attrito.</span>
         </h2>
       </Reveal>

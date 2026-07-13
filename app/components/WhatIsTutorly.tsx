@@ -1,17 +1,22 @@
 import Reveal from "./Reveal";
 
-const PILLARS = [
+// The agency's real objection: "building a tutoring arm is a project."
+// Each card kills one reason they haven't done it yet.
+const BLOCKERS = [
   {
-    title: "Tutor verificati, non un marketplace aperto",
-    body: "Ogni tutor è selezionato, verificato e classificato per qualifiche, esperienza e risultati. Nessuna sorpresa davanti ai genitori.",
+    problem: "Reclutare tutor",
+    answer:
+      "La rete esiste già: tutor verificati dalle migliori università italiane, selezionati e classificati per livello.",
   },
   {
-    title: "Nessuna lista d'attesa",
-    body: "Il primo match arriva in pochi minuti, non in giorni. La domanda dei tuoi studenti non resta mai scoperta.",
+    problem: "Costruire la piattaforma",
+    answer:
+      "Aule virtuali, calendario, pagamenti e registrazioni: tutto incluso. Nessun software da comprare o integrare.",
   },
   {
-    title: "Qualità misurabile",
-    body: "Il sistema a livelli premia i tutor migliori e li rende riconoscibili. Sai sempre chi entra in aula.",
+    problem: "Gestire la qualità",
+    answer:
+      "Il sistema a livelli premia i tutor migliori e li rende riconoscibili. Sai sempre chi entra in aula.",
   },
 ];
 
@@ -19,27 +24,26 @@ export default function WhatIsTutorly() {
   return (
     <section id="cos-e" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
       <Reveal>
-        <h2 className="max-w-2xl text-3xl font-black tracking-tight md:text-5xl">
-          Non un elenco di tutor.
+        <h2 className="max-w-3xl text-3xl font-black md:text-5xl">
+          Aprire un servizio di ripetizioni
           <br />
-          Un’<span className="text-[var(--gold)]">infrastruttura</span>.
+          richiede mesi.{" "}
+          <span className="text-[var(--gold)]">O una settimana.</span>
         </h2>
-        <p className="mt-6 max-w-2xl text-lg text-[var(--text-muted)]">
-          Tutorly è la piattaforma che scuole e agenzie usano per offrire
-          ripetizioni online senza costruire nulla da zero: tutor, verifica,
-          aule virtuali e pagamenti, già pronti.
+        <p className="mt-7 max-w-2xl text-lg text-[var(--text-muted)]">
+          Le tre cose che fermano ogni agenzia — i tutor, la tecnologia, la
+          qualità — sono esattamente le tre che ti diamo già fatte.
         </p>
       </Reveal>
 
       <div className="mt-16 grid gap-6 md:grid-cols-3">
-        {PILLARS.map((p, i) => (
-          <Reveal key={p.title} delay={i * 90}>
+        {BLOCKERS.map((b, i) => (
+          <Reveal key={b.problem} delay={i * 90}>
             <div className="h-full rounded-3xl border border-[rgba(4,44,68,0.1)] bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(4,44,68,0.1)]">
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--gold)] font-display text-lg font-black text-[var(--navy)]">
-                {i + 1}
-              </div>
-              <h3 className="mt-6 text-xl font-bold">{p.title}</h3>
-              <p className="mt-3 text-[var(--text-muted)]">{p.body}</p>
+              <p className="text-sm font-bold tracking-wide text-[var(--text-muted)] uppercase line-through decoration-[var(--gold)] decoration-2">
+                {b.problem}
+              </p>
+              <p className="mt-5 text-[var(--navy)]">{b.answer}</p>
             </div>
           </Reveal>
         ))}

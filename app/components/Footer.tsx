@@ -8,13 +8,14 @@ export default function Footer() {
         <div className="grid gap-6 md:grid-cols-2">
           <div className="rounded-3xl bg-[var(--navy)] p-10 text-white">
             <h3 className="font-display text-2xl font-black md:text-3xl">
-              Sei una scuola o un’agenzia?
+              Hai un’agenzia?
             </h3>
             <p className="mt-3 text-white/70">
-              Attiviamo la tua offerta di tutoring in pochi giorni.
+              Attiviamo il tuo servizio di ripetizioni in pochi giorni. Zero
+              costi di setup.
             </p>
             <a href={`mailto:${DEMO_EMAIL}`} className="btn-primary mt-7">
-              Richiedi una demo
+              Attiva il tuo tutoring
             </a>
           </div>
 

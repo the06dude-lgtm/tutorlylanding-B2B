@@ -48,7 +48,7 @@ export default function BecomeTutor() {
         <span className="text-sm font-bold tracking-widest text-[var(--gold-dark)] uppercase">
           Per i tutor
         </span>
-        <h2 className="mt-5 max-w-2xl text-3xl font-black tracking-tight md:text-5xl">
+        <h2 className="mt-5 max-w-2xl text-3xl font-black md:text-5xl">
           Sali di livello.
           <br />
           Guadagna <span className="text-[var(--gold)]">di più</span>.

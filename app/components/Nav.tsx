@@ -21,7 +21,7 @@ export default function Nav() {
             Cos’è
           </a>
           <a href="#partner" className="transition hover:text-[var(--gold-dark)]">
-            Scuole e agenzie
+            Agenzie
           </a>
           <a href="#tutor" className="transition hover:text-[var(--gold-dark)]">
             Tutor

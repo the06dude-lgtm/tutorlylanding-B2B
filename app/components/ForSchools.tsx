@@ -12,8 +12,8 @@ const UNIVERSITIES = [
 
 const BENEFITS = [
   {
-    title: "Estendi l'offerta senza assumere",
-    body: "Aggiungi ripetizioni al tuo catalogo senza reclutare, formare o gestire tutor. La rete è già attiva.",
+    title: "Una nuova linea di ricavi",
+    body: "Il tutoring diventa un servizio che vendi ai clienti che hai già. Nessun costo fisso, nessuna assunzione.",
   },
   {
     title: "Copertura su tutte le materie",
@@ -25,7 +25,7 @@ const BENEFITS = [
   },
   {
     title: "Reportistica trasparente",
-    body: "Ore erogate, presenze e feedback. Dati chiari da mostrare a presidi, genitori e clienti.",
+    body: "Ore erogate, presenze e feedback. Dati chiari da mostrare ai tuoi clienti — e da usare per rivendere.",
   },
 ];
 
@@ -44,17 +44,17 @@ export default function ForSchools() {
       <div className="relative mx-auto max-w-6xl px-6">
         <Reveal>
           <span className="text-sm font-bold tracking-widest text-[var(--gold)] uppercase">
-            Per scuole e agenzie
+            Per le agenzie
           </span>
-          <h2 className="mt-5 max-w-2xl text-3xl font-black tracking-tight md:text-5xl">
-            La tua offerta di tutoring,
+          <h2 className="mt-5 max-w-2xl text-3xl font-black md:text-5xl">
+            Il tutoring che non hai,
             <br />
-            <span className="text-[var(--gold)]">operativa domani</span>
+            <span className="text-[var(--gold)]">operativo domani</span>
           </h2>
           <p className="mt-6 max-w-2xl text-lg text-white/70">
-            Sei una scuola, un doposcuola o un’agenzia educativa? Colleghi i tuoi
-            studenti alla nostra rete di tutor verificati e noi gestiamo il
-            resto.
+            I tuoi clienti chiedono ripetizioni e tu devi dire di no. Con Tutorly
+            dici di sì: attivi il servizio, lo vendi come tuo, e noi lo eroghiamo
+            dietro le quinte.
           </p>
         </Reveal>
 
