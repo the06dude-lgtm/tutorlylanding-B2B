@@ -88,27 +88,29 @@ export default function MascotHero() {
         <div
           role="dialog"
           aria-label="Lancia la tua piattaforma di tutoring in 7 giorni"
-          className="pointer-events-none absolute inset-0"
+          className="mascot-cards pointer-events-none absolute inset-0"
         >
           <div
-            className="mascot-pop pointer-events-auto absolute top-0 w-72 rounded-3xl border border-[rgba(4,44,68,0.1)] bg-white p-5 text-center shadow-[0_16px_48px_rgba(4,44,68,0.18)]"
+            className="mascot-pop pointer-events-auto absolute top-0 w-72"
             style={{ left: "calc(50% - 144px)" }}
           >
-            <p className="font-display text-xl font-black leading-snug">
-              Lancia la tua piattaforma di tutoring in 7 giorni
-            </p>
-            <a
-              href={`mailto:${DEMO_EMAIL}`}
-              className="btn-primary mt-4 w-full !px-4 !py-2.5 text-sm"
-            >
-              Prenota una demo
-            </a>
-            <button
-              onClick={() => setOpen(false)}
-              className="mt-2 w-full text-xs font-semibold text-[var(--text-muted)] hover:text-[var(--navy)]"
-            >
-              Chiudi
-            </button>
+            <div className="mascot-card3d-soft rounded-3xl border border-[rgba(4,44,68,0.1)] bg-white p-5 text-center">
+              <p className="font-display text-xl font-black leading-snug">
+                Lancia la tua piattaforma di tutoring in 7 giorni
+              </p>
+              <a
+                href={`mailto:${DEMO_EMAIL}`}
+                className="btn-primary mt-4 w-full !px-4 !py-2.5 text-sm"
+              >
+                Prenota una demo
+              </a>
+              <button
+                onClick={() => setOpen(false)}
+                className="mt-2 w-full text-xs font-semibold text-[var(--text-muted)] hover:text-[var(--navy)]"
+              >
+                Chiudi
+              </button>
+            </div>
           </div>
 
           {CARDS.map(({ icon, label, className, delay, drift }) => (
@@ -118,12 +120,13 @@ export default function MascotHero() {
               style={{ animationDelay: `${delay}ms` }}
             >
               <div
-                className="mascot-drift flex items-center gap-2.5 rounded-2xl border border-[rgba(4,44,68,0.1)] bg-white py-2.5 pr-4 pl-2.5 shadow-[0_10px_30px_rgba(4,44,68,0.12)]"
+                className="mascot-card3d flex items-center gap-2.5 rounded-2xl border border-[rgba(4,44,68,0.1)] bg-white py-2.5 pr-4 pl-2.5"
                 style={{ animationDelay: drift }}
               >
                 <span
                   aria-hidden
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--cream)] text-sm font-black text-[var(--gold-dark)]"
+                  className="flex h-8 w-8 items-center justify-center rounded-full text-sm font-black text-[var(--navy)]"
+                  style={{ background: "var(--gradient-gold)" }}
                 >
                   {icon}
                 </span>

@@ -29,6 +29,16 @@ const DEPTH_BY_FILL: Record<string, number> = {
 /** The star golds — these get the emissive pulse in activation mode. */
 const STAR_FILLS = new Set(["#ffbb04", "#ff9204"]);
 
+/**
+ * The SVG's skin tones read washed-out/pale under the scene lights — warm
+ * them up. Base tone per the brand's ask; the mid shading tone follows it
+ * down so the shading stays darker than the base.
+ */
+const COLOR_OVERRIDE: Record<string, string> = {
+  "#f3cfbf": "#eaa894",
+  "#f1b9a7": "#e29280",
+};
+
 function MascotModel({ hovered }: { hovered: boolean }) {
   const data = useLoader(SVGLoader, MASCOT_SVG);
   const group = useRef<THREE.Group>(null);
@@ -63,7 +73,7 @@ function MascotModel({ hovered }: { hovered: boolean }) {
             bevelSegments: 4,
             curveSegments: 12,
           }),
-          color: fill,
+          color: COLOR_OVERRIDE[hex] ?? fill,
           star: STAR_FILLS.has(hex),
         });
       }
@@ -78,22 +88,30 @@ function MascotModel({ hovered }: { hovered: boolean }) {
     return { shapes, centre: box.getCenter(new THREE.Vector3()) };
   }, [data]);
 
-  // Idle drift, a soft lean toward the cursor, and a friendly lift on hover.
-  // Never a full spin — the back of the character doesn't exist in the art.
+  // At rest he sits centred, facing forward. Hovering wakes him: a slow sway
+  // plus a soft lean toward the cursor, and a friendly lift. Never a full
+  // spin — the back of the character doesn't exist in the art.
   useFrame((state, delta) => {
     if (!group.current) return;
-    phase.current += delta * (hovered ? 0.35 : 1);
-    const t = phase.current;
-    const { x, y } = state.pointer;
+
+    let targetY = 0;
+    let targetX = 0;
+    if (hovered) {
+      phase.current += delta * 0.4;
+      const t = phase.current;
+      const { x, y } = state.pointer;
+      targetY = Math.sin(t * 0.35) * 0.1 + x * 0.35;
+      targetX = -y * 0.18 + Math.sin(t * 0.5) * 0.03;
+    }
 
     group.current.rotation.y = THREE.MathUtils.lerp(
       group.current.rotation.y,
-      Math.sin(t * 0.35) * 0.16 + x * 0.35,
+      targetY,
       0.06
     );
     group.current.rotation.x = THREE.MathUtils.lerp(
       group.current.rotation.x,
-      -y * 0.18 + Math.sin(t * 0.5) * 0.04,
+      targetX,
       0.06
     );
 
@@ -262,7 +280,8 @@ export default function MascotScene({
       <pointLight position={[4, -4, 8]} intensity={1.2} color="#f0b753" />
 
       <Suspense fallback={null}>
-        <Float speed={1.5} rotationIntensity={0.15} floatIntensity={0.7}>
+        {/* rotationIntensity kept tiny so the resting pose stays face-front. */}
+        <Float speed={1.5} rotationIntensity={0.05} floatIntensity={0.7}>
           <MascotModel hovered={hovered} />
         </Float>
         <Particles active={hovered} />
