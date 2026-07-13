@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { LanguageProvider } from "@/lib/i18n";
 import "./globals.css";
 
 // Coolvetica is the brand's display voice — self-hosted from the official asset
@@ -25,7 +26,9 @@ export default function RootLayout({
         {/* Satoshi — the body face. Self-host from Fontshare before launch. */}
         <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet" />
       </head>
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        <LanguageProvider>{children}</LanguageProvider>
+      </body>
     </html>
   );
 }

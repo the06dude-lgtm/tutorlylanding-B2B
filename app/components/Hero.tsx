@@ -1,7 +1,12 @@
+"use client";
+
 import { DEMO_EMAIL, SIGNUP_URL } from "@/lib/config";
+import { useLang } from "@/lib/i18n";
 import MascotHero from "./MascotHero";
 
 export default function Hero() {
+  const { t } = useLang();
+
   return (
     <section className="relative overflow-hidden pt-28 pb-20 md:pt-32 md:pb-28">
       <div
@@ -14,37 +19,31 @@ export default function Hero() {
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-[rgba(4,44,68,0.12)] bg-white px-4 py-2 text-sm font-semibold">
             <span className="h-2 w-2 rounded-full bg-[var(--gold)]" />
-            Per agenzie e tutor
+            {t.hero.badge}
           </span>
 
           <h1 className="mt-6 text-4xl font-black md:text-6xl">
-            Lancia le tue
+            {t.hero.title1}
             <br />
-            ripetizioni.{" "}
-            <span className="text-[var(--gold)]">Senza costruirle.</span>
+            {t.hero.title2}{" "}
+            <span className="text-[var(--gold)]">{t.hero.titleAccent}</span>
           </h1>
 
           <p className="mt-7 max-w-lg text-lg text-[var(--text-muted)]">
-            La tua agenzia non offre tutoring? Con Tutorly lo attivi in pochi
-            giorni: tutor verificati, aule virtuali e pagamenti sono già pronti.
-            Tu ci metti i clienti, noi tutto il resto.
+            {t.hero.body}
           </p>
 
           <div className="mt-9 flex flex-wrap gap-4">
             <a href={`mailto:${DEMO_EMAIL}`} className="btn-primary">
-              Attiva il tuo tutoring
+              {t.hero.ctaPrimary}
             </a>
             <a href={SIGNUP_URL} className="btn-secondary">
-              Insegna con noi
+              {t.hero.ctaSecondary}
             </a>
           </div>
 
           <dl className="mt-12 grid max-w-md grid-cols-3 gap-6">
-            {[
-              ["0€", "Costi di setup"],
-              ["Giorni", "Non mesi"],
-              ["100%", "Tutor verificati"],
-            ].map(([stat, label]) => (
+            {t.hero.stats.map(([stat, label]) => (
               <div key={label}>
                 <dt className="font-display text-3xl font-black">{stat}</dt>
                 <dd className="mt-1 text-sm text-[var(--text-muted)]">

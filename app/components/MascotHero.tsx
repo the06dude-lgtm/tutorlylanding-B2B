@@ -3,37 +3,20 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { DEMO_EMAIL } from "@/lib/config";
+import { useLang } from "@/lib/i18n";
 
 const MascotScene = dynamic(() => import("./MascotScene"), { ssr: false });
 
-const CARDS = [
-  {
-    icon: "✓",
-    title: "Tutor verificati",
-    sub: "Dalle migliori università",
-    className: "left-0 top-[40%]",
-    delay: 120,
-    drift: "-1.8s",
-    tilt: "-3deg",
-  },
-  {
-    icon: "€",
-    title: "Pagamenti pronti",
-    sub: "Incassi automatici, zero setup",
-    className: "right-0 top-[48%]",
-    delay: 240,
-    drift: "-3.4s",
-    tilt: "2.5deg",
-  },
-  {
-    icon: "★",
-    title: "Il tuo brand",
-    sub: "White-label completo",
-    className: "bottom-[5%] left-[8%]",
-    delay: 360,
-    drift: "-0.9s",
-    tilt: "-2deg",
-  },
+/**
+ * Placement of the three proof cards, staggered around the mascot so nothing
+ * covers his face: upper-left below the pitch card, lower-right at shoulder
+ * level, lower-left at hand level. Copy comes from the i18n dict in the same
+ * order.
+ */
+const CARD_LAYOUT = [
+  { icon: "✓", className: "left-0 top-[40%]", delay: 120, drift: "-1.8s", tilt: "-3deg" },
+  { icon: "€", className: "right-0 top-[64%]", delay: 240, drift: "-3.4s", tilt: "2.5deg" },
+  { icon: "★", className: "bottom-[14%] left-0", delay: 360, drift: "-0.9s", tilt: "-2deg" },
 ];
 
 /**
@@ -46,6 +29,7 @@ export default function MascotHero() {
   const [enabled, setEnabled] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [open, setOpen] = useState(false);
+  const { t } = useLang();
 
   // The slot is display:none below lg — don't pay for a hidden WebGL canvas.
   useEffect(() => {
@@ -84,7 +68,7 @@ export default function MascotHero() {
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         aria-expanded={open}
-        aria-label="Scopri come funziona Tutorly"
+        aria-label={t.mascot.aria}
         className="h-full w-full cursor-pointer rounded-full"
       >
         {/* Open = he steps back to give the cards the stage; hover = he leans
@@ -98,7 +82,7 @@ export default function MascotHero() {
       {open && (
         <div
           role="dialog"
-          aria-label="Lancia la tua piattaforma di tutoring in 7 giorni"
+          aria-label={t.mascot.headline}
           className="pointer-events-none absolute inset-0"
         >
           <div
@@ -107,20 +91,20 @@ export default function MascotHero() {
           >
             <div className="mascot-float-soft relative rounded-3xl border border-[rgba(4,44,68,0.08)] bg-white/95 p-6 text-center shadow-[0_2px_8px_rgba(4,44,68,0.05),0_28px_56px_rgba(4,44,68,0.18)] backdrop-blur-md">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--cream)] px-3 py-1 text-xs font-bold tracking-wide text-[var(--gold-dark)]">
-                ⚡ Attiva in 7 giorni
+                {t.mascot.pill}
               </span>
               <p className="font-display mt-3 text-2xl font-black leading-snug">
-                Lancia la tua piattaforma di tutoring
+                {t.mascot.headline}
               </p>
               <a
                 href={`mailto:${DEMO_EMAIL}`}
                 className="btn-primary mt-4 w-full !px-4 !py-2.5 text-sm"
               >
-                Prenota una demo
+                {t.mascot.cta}
               </a>
               <button
                 onClick={() => setOpen(false)}
-                aria-label="Chiudi"
+                aria-label={t.mascot.close}
                 className="absolute -top-2.5 -right-2.5 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--navy)] text-sm font-bold text-white shadow-md transition-transform hover:scale-110"
               >
                 ✕
@@ -128,9 +112,9 @@ export default function MascotHero() {
             </div>
           </div>
 
-          {CARDS.map(({ icon, title, sub, className, delay, drift, tilt }) => (
+          {CARD_LAYOUT.map(({ icon, className, delay, drift, tilt }, i) => (
             <div
-              key={title}
+              key={icon}
               className={`mascot-pop pointer-events-auto absolute ${className}`}
               style={{ animationDelay: `${delay}ms` }}
             >
@@ -146,9 +130,11 @@ export default function MascotHero() {
                   {icon}
                 </span>
                 <span className="flex flex-col whitespace-nowrap">
-                  <span className="text-sm font-bold">{title}</span>
+                  <span className="text-sm font-bold">
+                    {t.mascot.cards[i].title}
+                  </span>
                   <span className="text-xs text-[var(--text-muted)]">
-                    {sub}
+                    {t.mascot.cards[i].sub}
                   </span>
                 </span>
               </div>
