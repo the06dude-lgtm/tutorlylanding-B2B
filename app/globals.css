@@ -1,26 +1,158 @@
 @import "tailwindcss";
 
+/*
+ * Tutorly brand tokens — lifted from the live site's LandingPage.module.css
+ * (see TUTORLY_DESIGN_EXTRACTION.md §1). Navy + gold on warm off-white.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --navy: #042c44;
+  --navy-soft: #084467;
+  --charcoal: #2e2e2e;
+
+  --gold: #f0b753;
+  --gold-dark: #d9a03d;
+  --gold-light: #f5c673;
+  --gold-hot: #ffbb04; /* the mascot's own gold — punchier than the UI gold */
+
+  --cyan: #00d4ff; /* Diamond tier — the one saturated hue the brand allows */
+
+  --off-white: #f8f7f4;
+  --cream: #fff7eb;
+  --sand: #e7dbc8;
+  --white: #ffffff;
+
+  --text-muted: #4b5563;
+
+  --gradient-gold: linear-gradient(135deg, #f0b753 0%, #d9a03d 100%);
+  --gradient-navy: linear-gradient(135deg, #042c44 0%, #2e2e2e 100%);
+  --gradient-mesh:
+    radial-gradient(at 0% 0%, rgba(240, 183, 83, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(0, 212, 255, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(231, 219, 200, 0.18) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(240, 183, 83, 0.08) 0px, transparent 50%);
+
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --font-satoshi: "Satoshi", -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-navy: var(--navy);
+  --color-navy-soft: var(--navy-soft);
+  --color-gold: var(--gold);
+  --color-gold-dark: var(--gold-dark);
+  --color-gold-hot: var(--gold-hot);
+  --color-cyan: var(--cyan);
+  --color-off-white: var(--off-white);
+  --color-cream: var(--cream);
+  --color-sand: var(--sand);
+  --font-display: var(--font-coolvetica);
+  --font-sans: var(--font-satoshi);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--off-white);
+  color: var(--navy);
+  font-family: var(--font-satoshi), -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Coolvetica is display-only: h1/h2 and short accents. Never body copy. */
+h1,
+h2,
+.font-display {
+  font-family: var(--font-coolvetica), Helvetica, Arial, sans-serif;
+}
+
+/* The brand's signature CTA: gold gradient, NAVY text, gold-tinted glow. */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  border-radius: 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--navy);
+  background: var(--gradient-gold);
+  box-shadow: 0 4px 12px rgba(240, 183, 83, 0.25);
+  transition: all 0.3s var(--ease);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(240, 183, 83, 0.4);
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  border-radius: 16px;
+  font-weight: 600;
+  color: var(--navy);
+  background: var(--white);
+  border: 1px solid rgba(4, 44, 68, 0.12);
+  transition: all 0.3s var(--ease);
+}
+.btn-secondary:hover {
+  border-color: rgba(4, 44, 68, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(4, 44, 68, 0.08);
+}
+
+/* On the dark navy sections, the secondary button inverts. */
+.btn-ghost-light {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  border-radius: 16px;
+  font-weight: 600;
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: all 0.3s var(--ease);
+}
+.btn-ghost-light:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+:where(a, button):focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Scroll-reveal — driven by IntersectionObserver in useReveal(). */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s var(--ease),
+    transform 0.7s var(--ease);
+}
+.reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }
