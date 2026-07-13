@@ -152,58 +152,41 @@ h1 {
   transform: none;
 }
 
-/* Mascot mini-demo — cards pop in, then hang in the air around the mascot
-   with a slow 3D tumble. Pop and tumble both animate transform, so they live
-   on nested elements. The container supplies the shared perspective so the
-   cards read as one floating cluster, not three separate wobbles. */
-.mascot-cards {
-  perspective: 900px;
-}
+/* Mascot mini-demo — cards pop in with a small overshoot, then float gently.
+   Pop and float both animate transform, so they live on nested elements. The
+   per-card tilt uses the independent `rotate` property, which neither
+   animation touches — the cards hang at a fixed casual angle while bobbing. */
 @keyframes mascot-pop {
-  from {
+  0% {
     opacity: 0;
-    transform: scale(0.85) translateY(14px);
+    transform: scale(0.8) translateY(18px);
   }
-  to {
+  70% {
+    opacity: 1;
+    transform: scale(1.03) translateY(-2px);
+  }
+  100% {
     opacity: 1;
     transform: scale(1) translateY(0);
   }
 }
 .mascot-pop {
-  animation: mascot-pop 0.45s var(--ease) both;
+  animation: mascot-pop 0.55s var(--ease) both;
 }
-@keyframes mascot-tumble {
+@keyframes mascot-floaty {
   0%,
   100% {
-    transform: translateY(0) rotateX(7deg) rotateY(-8deg);
+    transform: translateY(0);
   }
   50% {
-    transform: translateY(-12px) rotateX(-5deg) rotateY(8deg);
+    transform: translateY(-10px);
   }
 }
-.mascot-card3d {
-  transform-style: preserve-3d;
-  animation: mascot-tumble 6s ease-in-out infinite;
-  box-shadow:
-    0 2px 6px rgba(4, 44, 68, 0.06),
-    0 24px 48px rgba(4, 44, 68, 0.16);
+.mascot-float {
+  animation: mascot-floaty 5s ease-in-out infinite;
 }
-/* The pitch card tumbles too, but barely — it carries the CTA. */
-@keyframes mascot-tumble-soft {
-  0%,
-  100% {
-    transform: translateY(0) rotateX(3deg);
-  }
-  50% {
-    transform: translateY(-8px) rotateX(-2deg);
-  }
-}
-.mascot-card3d-soft {
-  transform-style: preserve-3d;
-  animation: mascot-tumble-soft 7s ease-in-out infinite;
-  box-shadow:
-    0 2px 6px rgba(4, 44, 68, 0.06),
-    0 28px 56px rgba(4, 44, 68, 0.2);
+.mascot-float-soft {
+  animation: mascot-floaty 6.5s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -30,13 +30,16 @@ const DEPTH_BY_FILL: Record<string, number> = {
 const STAR_FILLS = new Set(["#ffbb04", "#ff9204"]);
 
 /**
- * The SVG's skin tones read washed-out/pale under the scene lights — warm
- * them up. Base tone per the brand's ask; the mid shading tone follows it
- * down so the shading stays darker than the base.
+ * The SVG's skin tones read washed-out under the scene lights. Warm the base
+ * a touch and, more importantly, SPREAD the ramp: the shading tones sit well
+ * below the base and the blush well above, so ears, nose and cheeks keep
+ * their definition instead of melting into one flat tone.
  */
 const COLOR_OVERRIDE: Record<string, string> = {
-  "#f3cfbf": "#eaa894",
-  "#f1b9a7": "#e29280",
+  "#f3cfbf": "#f1bda9", // base skin — warmer than the artwork, lighter than before
+  "#f1b9a7": "#e39b85", // mid shading — clearly below the base
+  "#de9379": "#cf7d61", // deep shading (inner ear, nose) — anchors the ramp
+  "#faabaa": "#f79598", // cheek blush — more saturated so it pops again
 };
 
 function MascotModel({ hovered }: { hovered: boolean }) {

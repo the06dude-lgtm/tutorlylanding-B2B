@@ -9,24 +9,30 @@ const MascotScene = dynamic(() => import("./MascotScene"), { ssr: false });
 const CARDS = [
   {
     icon: "✓",
-    label: "Tutor verificati",
-    className: "left-0 top-[36%]",
+    title: "Tutor verificati",
+    sub: "Dalle migliori università",
+    className: "left-0 top-[40%]",
     delay: 120,
     drift: "-1.8s",
+    tilt: "-3deg",
   },
   {
     icon: "€",
-    label: "Pagamenti pronti",
-    className: "right-0 top-[56%]",
+    title: "Pagamenti pronti",
+    sub: "Incassi automatici, zero setup",
+    className: "right-0 top-[48%]",
     delay: 240,
-    drift: "-3.6s",
+    drift: "-3.4s",
+    tilt: "2.5deg",
   },
   {
     icon: "★",
-    label: "Il brand della tua agenzia",
-    className: "bottom-[4%] left-[16%]",
+    title: "Il tuo brand",
+    sub: "White-label completo",
+    className: "bottom-[5%] left-[8%]",
     delay: 360,
     drift: "-0.9s",
+    tilt: "-2deg",
   },
 ];
 
@@ -81,22 +87,30 @@ export default function MascotHero() {
         aria-label="Scopri come funziona Tutorly"
         className="h-full w-full cursor-pointer rounded-full"
       >
-        <MascotScene hovered={active} distance={active ? 18.5 : 21} />
+        {/* Open = he steps back to give the cards the stage; hover = he leans
+            in. Both eased by the scene's camera rig. */}
+        <MascotScene
+          hovered={active}
+          distance={open ? 24.5 : hovered ? 18.5 : 21}
+        />
       </button>
 
       {open && (
         <div
           role="dialog"
           aria-label="Lancia la tua piattaforma di tutoring in 7 giorni"
-          className="mascot-cards pointer-events-none absolute inset-0"
+          className="pointer-events-none absolute inset-0"
         >
           <div
-            className="mascot-pop pointer-events-auto absolute top-0 w-72"
-            style={{ left: "calc(50% - 144px)" }}
+            className="mascot-pop pointer-events-auto absolute top-1 w-80"
+            style={{ left: "calc(50% - 160px)" }}
           >
-            <div className="mascot-card3d-soft rounded-3xl border border-[rgba(4,44,68,0.1)] bg-white p-5 text-center">
-              <p className="font-display text-xl font-black leading-snug">
-                Lancia la tua piattaforma di tutoring in 7 giorni
+            <div className="mascot-float-soft relative rounded-3xl border border-[rgba(4,44,68,0.08)] bg-white/95 p-6 text-center shadow-[0_2px_8px_rgba(4,44,68,0.05),0_28px_56px_rgba(4,44,68,0.18)] backdrop-blur-md">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--cream)] px-3 py-1 text-xs font-bold tracking-wide text-[var(--gold-dark)]">
+                ⚡ Attiva in 7 giorni
+              </span>
+              <p className="font-display mt-3 text-2xl font-black leading-snug">
+                Lancia la tua piattaforma di tutoring
               </p>
               <a
                 href={`mailto:${DEMO_EMAIL}`}
@@ -106,32 +120,36 @@ export default function MascotHero() {
               </a>
               <button
                 onClick={() => setOpen(false)}
-                className="mt-2 w-full text-xs font-semibold text-[var(--text-muted)] hover:text-[var(--navy)]"
+                aria-label="Chiudi"
+                className="absolute -top-2.5 -right-2.5 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--navy)] text-sm font-bold text-white shadow-md transition-transform hover:scale-110"
               >
-                Chiudi
+                ✕
               </button>
             </div>
           </div>
 
-          {CARDS.map(({ icon, label, className, delay, drift }) => (
+          {CARDS.map(({ icon, title, sub, className, delay, drift, tilt }) => (
             <div
-              key={label}
+              key={title}
               className={`mascot-pop pointer-events-auto absolute ${className}`}
               style={{ animationDelay: `${delay}ms` }}
             >
               <div
-                className="mascot-card3d flex items-center gap-2.5 rounded-2xl border border-[rgba(4,44,68,0.1)] bg-white py-2.5 pr-4 pl-2.5"
-                style={{ animationDelay: drift }}
+                className="mascot-float flex items-center gap-3 rounded-2xl border border-[rgba(4,44,68,0.08)] bg-white/90 py-3 pr-5 pl-3 shadow-[0_2px_8px_rgba(4,44,68,0.05),0_20px_40px_rgba(4,44,68,0.14)] backdrop-blur-md"
+                style={{ animationDelay: drift, rotate: tilt }}
               >
                 <span
                   aria-hidden
-                  className="flex h-8 w-8 items-center justify-center rounded-full text-sm font-black text-[var(--navy)]"
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-base font-black text-[var(--navy)] shadow-[0_3px_8px_rgba(240,183,83,0.4)]"
                   style={{ background: "var(--gradient-gold)" }}
                 >
                   {icon}
                 </span>
-                <span className="text-sm font-bold whitespace-nowrap">
-                  {label}
+                <span className="flex flex-col whitespace-nowrap">
+                  <span className="text-sm font-bold">{title}</span>
+                  <span className="text-xs text-[var(--text-muted)]">
+                    {sub}
+                  </span>
                 </span>
               </div>
             </div>
