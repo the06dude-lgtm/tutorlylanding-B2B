@@ -5,7 +5,6 @@ import ForSchools from "./components/ForSchools";
 import HowItWorks from "./components/HowItWorks";
 import BecomeTutor from "./components/BecomeTutor";
 import Footer from "./components/Footer";
-import MascotCompanion from "./components/MascotCompanion";
 
 export default function Home() {
   return (
@@ -19,7 +18,6 @@ export default function Home() {
         <BecomeTutor />
       </main>
       <Footer />
-      <MascotCompanion />
     </>
   );
 }

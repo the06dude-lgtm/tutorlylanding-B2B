@@ -1,13 +1,5 @@
-"use client";
-
-import dynamic from "next/dynamic";
 import { DEMO_EMAIL, SIGNUP_URL } from "@/lib/config";
-
-// The 3D scene is client-only and must never block first paint.
-const MascotScene = dynamic(() => import("./MascotScene"), {
-  ssr: false,
-  loading: () => null,
-});
+import MascotHero from "./MascotHero";
 
 export default function Hero() {
   return (
@@ -63,16 +55,8 @@ export default function Hero() {
           </dl>
         </div>
 
-        {/* The 3D mascot. Decorative — the page reads fine without it. */}
-        <div aria-hidden className="relative h-[400px] md:h-[600px]">
-          <div
-            className="absolute inset-0 -z-10 blur-3xl"
-            style={{
-              background:
-                "radial-gradient(circle at 50% 45%, rgba(240,183,83,0.4) 0%, rgba(0,212,255,0.18) 45%, transparent 70%)",
-            }}
-          />
-          <MascotScene />
+        <div className="relative hidden h-[600px] lg:block">
+          <MascotHero />
         </div>
       </div>
     </section>

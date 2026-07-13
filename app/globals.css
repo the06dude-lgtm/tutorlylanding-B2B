@@ -152,6 +152,35 @@ h1 {
   transform: none;
 }
 
+/* Mascot mini-demo — cards pop in, then drift while they hang around the
+   mascot. Two separate elements: pop and drift both animate transform, so
+   they can't share one. */
+@keyframes mascot-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+@keyframes mascot-drift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.mascot-pop {
+  animation: mascot-pop 0.45s var(--ease) both;
+}
+.mascot-drift {
+  animation: mascot-drift 5.5s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
