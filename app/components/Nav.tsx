@@ -15,7 +15,35 @@ export default function Nav() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-[rgba(4,44,68,0.06)] bg-[var(--cream)]/90 backdrop-blur-md">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-5">
+          {/* Language switch — corner slot, left of the logo. A sliding pill:
+              the cream thumb glides under the active flag. */}
+          <div className="relative flex items-center rounded-full border border-[rgba(4,44,68,0.12)] bg-white p-1 shadow-[0_2px_8px_rgba(4,44,68,0.06)]">
+            <span
+              aria-hidden
+              className="absolute top-1 left-1 h-7 w-12 rounded-full border border-[rgba(240,183,83,0.5)] bg-[var(--cream)] shadow-sm transition-transform duration-300"
+              style={{
+                transform: `translateX(${lang === "it" ? 0 : 48}px)`,
+              }}
+            />
+            {LANGS.map(({ code, flag, label }) => (
+              <button
+                key={code}
+                onClick={() => setLang(code)}
+                aria-label={label}
+                aria-pressed={lang === code}
+                className={`relative z-10 flex h-7 w-12 items-center justify-center gap-1 rounded-full text-xs font-bold transition-colors duration-300 ${
+                  lang === code
+                    ? "text-[var(--navy)]"
+                    : "text-[var(--text-muted)] opacity-50 hover:opacity-90"
+                }`}
+              >
+                <span className="text-sm">{flag}</span>
+                {code.toUpperCase()}
+              </button>
+            ))}
+          </div>
+
           <a href="#" className="flex items-center">
             <Image
               src="/tutorly-logo.png"
@@ -26,25 +54,6 @@ export default function Nav() {
               className="h-9 w-auto"
             />
           </a>
-
-          {/* Language switch — flags only, IT/EN. */}
-          <div className="flex items-center rounded-full border border-[rgba(4,44,68,0.12)] bg-white p-0.5">
-            {LANGS.map(({ code, flag, label }) => (
-              <button
-                key={code}
-                onClick={() => setLang(code)}
-                aria-label={label}
-                aria-pressed={lang === code}
-                className={`flex h-7 w-9 items-center justify-center rounded-full text-base transition ${
-                  lang === code
-                    ? "bg-[var(--cream)] shadow-sm"
-                    : "opacity-40 hover:opacity-80"
-                }`}
-              >
-                {flag}
-              </button>
-            ))}
-          </div>
         </div>
 
         <div className="hidden items-center gap-8 text-sm font-semibold md:flex">

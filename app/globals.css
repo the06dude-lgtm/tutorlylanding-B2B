@@ -139,19 +139,6 @@ h1 {
   border-radius: 4px;
 }
 
-/* Scroll-reveal — driven by IntersectionObserver in useReveal(). */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition:
-    opacity 0.7s var(--ease),
-    transform 0.7s var(--ease);
-}
-.reveal-in {
-  opacity: 1;
-  transform: none;
-}
-
 /* Mascot mini-demo — cards pop in with a small overshoot, then float gently.
    Pop and float both animate transform, so they live on nested elements. The
    per-card tilt uses the independent `rotate` property, which neither
@@ -196,9 +183,5 @@ h1 {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-  .reveal {
-    opacity: 1;
-    transform: none;
   }
 }
