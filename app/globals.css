@@ -50,6 +50,15 @@
   --font-sans: var(--font-satoshi);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+/* Anchor targets stop below the fixed nav instead of underneath it. */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
 body {
   background: var(--off-white);
   color: var(--navy);

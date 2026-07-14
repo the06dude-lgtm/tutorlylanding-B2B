@@ -13,32 +13,48 @@ const TIERS = [
     commission: "25%",
     img: "/tiers/mascot-tier-1-bronze.png",
     glow: "rgba(205,127,50,0.35)",
+    bar: "linear-gradient(90deg, #cd7f32, #e8a56b)",
   },
   {
     name: "Silver",
     commission: "22%",
     img: "/tiers/mascot-tier-2-silver.png",
     glow: "rgba(192,192,192,0.4)",
+    bar: "linear-gradient(90deg, #9aa4ad, #d7dde2)",
   },
   {
     name: "Gold",
     commission: "20%",
     img: "/tiers/mascot-tier-3-gold.png",
     glow: "rgba(240,183,83,0.45)",
+    bar: "var(--gradient-gold)",
   },
   {
     name: "Diamond",
     commission: "15%",
     img: "/tiers/mascot-tier-4-diamond.png",
     glow: "rgba(0,212,255,0.4)",
+    bar: "linear-gradient(90deg, #00d4ff, #7de9ff)",
   },
 ];
+
+const PERK_ICONS = ["€", "★", "🎓"];
 
 export default function BecomeTutor() {
   const { t } = useLang();
 
   return (
     <section id="tutor" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+      {/* Audience switch: everything above is for agencies, from here on
+          it's the tutor pitch — the hero's "Are you a tutor?" lands here. */}
+      <div className="mb-16 flex items-center gap-4 md:mb-20">
+        <span aria-hidden className="h-px flex-1 bg-[rgba(4,44,68,0.12)]" />
+        <span className="rounded-full border border-[rgba(4,44,68,0.12)] bg-white px-5 py-2.5 text-sm font-bold shadow-[0_2px_8px_rgba(4,44,68,0.06)]">
+          {t.tutors.divider}
+        </span>
+        <span aria-hidden className="h-px flex-1 bg-[rgba(4,44,68,0.12)]" />
+      </div>
+
       <span className="text-sm font-bold tracking-widest text-[var(--gold-dark)] uppercase">
         {t.tutors.kicker}
       </span>
@@ -56,8 +72,14 @@ export default function BecomeTutor() {
         {TIERS.map((tier, i) => (
           <div
             key={tier.name}
-            className="group relative h-full overflow-hidden rounded-3xl border border-[rgba(4,44,68,0.1)] bg-white p-8 text-center transition-all duration-500 hover:-translate-y-2"
+            className="group relative h-full overflow-hidden rounded-3xl border border-[rgba(4,44,68,0.1)] bg-white p-8 text-center transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_24px_56px_rgba(4,44,68,0.12)]"
           >
+              {/* Material swatch — each tier wears its own metal. */}
+              <span
+                aria-hidden
+                className="absolute inset-x-0 top-0 h-1.5"
+                style={{ background: tier.bar }}
+              />
               <div
                 aria-hidden
                 className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -91,10 +113,20 @@ export default function BecomeTutor() {
         ))}
       </div>
 
-      <div className="mt-16 grid gap-8 md:grid-cols-3">
-        {t.tutors.perks.map((perk) => (
-          <div key={perk.title}>
-            <h3 className="text-lg font-bold">{perk.title}</h3>
+      <div className="mt-16 grid gap-6 md:grid-cols-3">
+        {t.tutors.perks.map((perk, i) => (
+          <div
+            key={perk.title}
+            className="rounded-3xl border border-[rgba(4,44,68,0.1)] bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(4,44,68,0.1)]"
+          >
+            <span
+              aria-hidden
+              className="flex h-11 w-11 items-center justify-center rounded-xl text-base font-black text-[var(--navy)] shadow-[0_3px_8px_rgba(240,183,83,0.4)]"
+              style={{ background: "var(--gradient-gold)" }}
+            >
+              {PERK_ICONS[i]}
+            </span>
+            <h3 className="mt-5 text-lg font-bold">{perk.title}</h3>
             <p className="mt-2 text-[var(--text-muted)]">{perk.body}</p>
           </div>
         ))}

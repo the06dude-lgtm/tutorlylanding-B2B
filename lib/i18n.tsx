@@ -23,17 +23,16 @@ const it = {
     cta: "Inizia ora",
   },
   hero: {
-    badge: "Per agenzie e tutor",
-    title1: "Lancia le tue",
-    title2: "ripetizioni.",
-    titleAccent: "Senza costruirle.",
-    body: "La tua agenzia non offre tutoring? Con Tutorly lo attivi in pochi giorni: tutor verificati, aule virtuali e pagamenti sono già pronti. Tu ci metti i clienti, noi tutto il resto.",
-    ctaPrimary: "Attiva il tuo tutoring",
-    ctaSecondary: "Insegna con noi",
+    title1: "Ogni richiesta,",
+    title2: "coperta.",
+    titleAccent: "Col tuo brand.",
+    body: "Il tutoring che non offri lo eroghiamo noi, dietro il tuo brand. Zero costi fissi, zero rischio: cliente e margine restano tuoi.",
+    ctaPrimary: "Richiedi una demo",
+    ctaSecondary: "Sei un tutor? ↓",
     stats: [
-      ["0€", "Costi di setup"],
-      ["Giorni", "Non mesi"],
-      ["100%", "Tutor verificati"],
+      ["0€", "Costi fissi e di setup"],
+      ["100%", "Richieste coperte"],
+      ["Giorni", "Per partire, non mesi"],
     ],
   },
   mascot: {
@@ -49,9 +48,9 @@ const it = {
     ],
   },
   what: {
-    title1: "Aprire un servizio di ripetizioni",
-    title2: "richiede mesi.",
-    titleAccent: "O una settimana.",
+    title1: "Costruirlo richiede mesi.",
+    title2: "Averlo:",
+    titleAccent: "una settimana.",
     body: "Le tre cose che fermano ogni agenzia — i tutor, la tecnologia, la qualità — sono esattamente le tre che ti diamo già fatte.",
     blockers: [
       {
@@ -82,8 +81,8 @@ const it = {
         body: "Il tutoring diventa un servizio che vendi ai clienti che hai già. Nessun costo fisso, nessuna assunzione.",
       },
       {
-        title: "Copertura su tutte le materie",
-        body: "Dalle medie alla maturità, fino a IB, SAT e test di ammissione. Nessuna richiesta resta senza risposta.",
+        title: "Copertura totale, test inclusi",
+        body: "Dalle medie alla maturità, fino a IB, SAT e test di ammissione. E per GRE, GMAT, IELTS e TOEFL attiviamo partner specializzati: non devi mai dire di no.",
       },
       {
         title: "Aule virtuali incluse",
@@ -97,6 +96,11 @@ const it = {
     logosLabel: "I nostri tutor arrivano da",
     ctaDemo: "Richiedi una demo",
     ctaHow: "Come funziona",
+    niche: {
+      title: "Fai già tutoring, ma in una sola nicchia?",
+      body: "Solo preparazione IMAT? Solo coding? Ogni richiesta fuori dalla tua nicchia oggi è un cliente perso. Passala a noi: la eroghiamo col tuo brand e il cliente resta tuo.",
+      cta: "Parliamone",
+    },
   },
   how: {
     title: "Quattro passi.",
@@ -121,6 +125,7 @@ const it = {
     ],
   },
   tutors: {
+    divider: "🎓 Sei un tutor? Questa parte è per te",
     kicker: "Per i tutor",
     title1: "Sali di livello.",
     title2: "Guadagna",
@@ -166,17 +171,16 @@ const en: Dict = {
     cta: "Get started",
   },
   hero: {
-    badge: "For agencies & tutors",
-    title1: "Launch your",
-    title2: "tutoring.",
-    titleAccent: "Without building it.",
-    body: "Your agency doesn’t offer tutoring? With Tutorly it’s live in days: verified tutors, virtual classrooms and payments are ready to go. You bring the clients, we handle the rest.",
-    ctaPrimary: "Launch your tutoring",
-    ctaSecondary: "Teach with us",
+    title1: "Every request,",
+    title2: "covered.",
+    titleAccent: "Under your brand.",
+    body: "The tutoring you don’t offer, we deliver — behind your brand. Zero fixed costs, zero risk: the client and the margin stay yours.",
+    ctaPrimary: "Request a demo",
+    ctaSecondary: "Are you a tutor? ↓",
     stats: [
-      ["€0", "Setup costs"],
-      ["Days", "Not months"],
-      ["100%", "Verified tutors"],
+      ["€0", "Fixed & setup costs"],
+      ["100%", "Requests covered"],
+      ["Days", "To launch, not months"],
     ],
   },
   mascot: {
@@ -192,9 +196,9 @@ const en: Dict = {
     ],
   },
   what: {
-    title1: "Launching a tutoring service",
-    title2: "takes months.",
-    titleAccent: "Or one week.",
+    title1: "Building it takes months.",
+    title2: "Having it:",
+    titleAccent: "one week.",
     body: "The three things that stop every agency — tutors, technology, quality — are exactly the three we hand you ready-made.",
     blockers: [
       {
@@ -225,8 +229,8 @@ const en: Dict = {
         body: "Tutoring becomes a service you sell to the clients you already have. No fixed costs, no hiring.",
       },
       {
-        title: "Every subject covered",
-        body: "From middle school to finals, up to IB, SAT and admission tests. No request goes unanswered.",
+        title: "Total coverage, tests included",
+        body: "From middle school to finals, up to IB, SAT and admission tests. For GRE, GMAT, IELTS and TOEFL we bring in specialist partners: you never have to say no.",
       },
       {
         title: "Virtual classrooms included",
@@ -240,6 +244,11 @@ const en: Dict = {
     logosLabel: "Our tutors come from",
     ctaDemo: "Request a demo",
     ctaHow: "How it works",
+    niche: {
+      title: "Already tutoring, but in a single niche?",
+      body: "Only IMAT prep? Only coding? Every request outside your niche is a lost client today. Route it through us: we deliver it under your brand and the client stays yours.",
+      cta: "Let’s talk",
+    },
   },
   how: {
     title: "Four steps.",
@@ -264,6 +273,7 @@ const en: Dict = {
     ],
   },
   tutors: {
+    divider: "🎓 Are you a tutor? This part is for you",
     kicker: "For tutors",
     title1: "Level up.",
     title2: "Earn",

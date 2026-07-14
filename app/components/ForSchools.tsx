@@ -51,6 +51,21 @@ export default function ForSchools() {
           ))}
         </div>
 
+        {/* Leg 3: niche tutoring companies (IMAT-only, coding-only…) are
+            customers too — same white-label mechanic, different buyer. */}
+        <div className="mt-6 rounded-3xl border border-[var(--gold)]/40 bg-[var(--gold)]/10 p-8 md:flex md:items-center md:justify-between md:gap-10 md:p-10">
+          <div>
+            <h3 className="text-xl font-bold">{t.agencies.niche.title}</h3>
+            <p className="mt-3 max-w-2xl text-white/70">{t.agencies.niche.body}</p>
+          </div>
+          <a
+            href={`mailto:${DEMO_EMAIL}`}
+            className="btn-primary mt-6 shrink-0 md:mt-0"
+          >
+            {t.agencies.niche.cta}
+          </a>
+        </div>
+
         <div className="mt-16 rounded-3xl border border-white/10 bg-white/5 p-8 md:p-10">
           <p className="text-sm font-semibold tracking-wide text-white/60 uppercase">
             {t.agencies.logosLabel}

@@ -3,7 +3,8 @@
 import { useLang } from "@/lib/i18n";
 
 // The agency's real objection: "building a tutoring arm is a project."
-// Each card kills one reason they haven't done it yet.
+// Each row kills one reason they haven't done it yet — the problem struck
+// out at headline size, the ready-made answer beside it.
 export default function WhatIsTutorly() {
   const { t } = useLang();
 
@@ -19,16 +20,28 @@ export default function WhatIsTutorly() {
         {t.what.body}
       </p>
 
-      <div className="mt-16 grid gap-6 md:grid-cols-3">
-        {t.what.blockers.map((b) => (
+      <div className="mt-16 border-t border-[rgba(4,44,68,0.12)]">
+        {t.what.blockers.map((b, i) => (
           <div
             key={b.problem}
-            className="h-full rounded-3xl border border-[rgba(4,44,68,0.1)] bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(4,44,68,0.1)]"
+            className="group grid items-baseline gap-3 border-b border-[rgba(4,44,68,0.12)] py-9 transition-all duration-300 hover:bg-white/70 hover:pl-4 md:grid-cols-[3.5rem_1.1fr_1fr] md:items-center md:gap-8 md:py-12"
           >
-            <p className="text-sm font-bold tracking-wide text-[var(--text-muted)] uppercase line-through decoration-[var(--gold)] decoration-2">
+            <span className="font-display text-sm font-black tracking-widest text-[var(--gold-dark)]">
+              0{i + 1}
+            </span>
+            <h3 className="font-display text-3xl font-black text-[rgba(4,44,68,0.3)] line-through decoration-[var(--gold)] decoration-[3px] transition-colors duration-300 group-hover:text-[rgba(4,44,68,0.5)] md:text-5xl">
               {b.problem}
+            </h3>
+            <p className="flex items-start gap-3 text-lg text-[var(--navy)]">
+              <span
+                aria-hidden
+                className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-black text-[var(--navy)]"
+                style={{ background: "var(--gradient-gold)" }}
+              >
+                ✓
+              </span>
+              {b.answer}
             </p>
-            <p className="mt-5 text-[var(--navy)]">{b.answer}</p>
           </div>
         ))}
       </div>
