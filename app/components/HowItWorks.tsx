@@ -8,7 +8,7 @@ export default function HowItWorks() {
   return (
     <section id="come-funziona" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
       <div className="rounded-[2.5rem] bg-[var(--cream)] px-8 py-14 md:px-16 md:py-20">
-        <h2 className="text-3xl font-black md:text-5xl">
+        <h2 className="text-3xl md:text-5xl">
           {t.how.title}{" "}
           <span className="text-[var(--gold)]">{t.how.titleAccent}</span>
         </h2>
@@ -27,7 +27,7 @@ export default function HowItWorks() {
           {t.how.steps.map((s, i) => (
             <li key={s.title} className="group relative">
               <span
-                className="relative z-10 flex h-14 w-14 items-center justify-center rounded-2xl font-display text-xl font-black text-[var(--navy)] shadow-[0_8px_20px_rgba(240,183,83,0.35)] transition-transform duration-300 group-hover:-translate-y-1 group-hover:rotate-6"
+                className="relative z-10 flex h-14 w-14 items-center justify-center rounded-2xl font-display text-xl text-[var(--navy)] shadow-[0_8px_20px_rgba(240,183,83,0.35)] transition-transform duration-300 group-hover:-translate-y-1 group-hover:rotate-6"
                 style={{ background: "var(--gradient-gold)" }}
               >
                 {i + 1}

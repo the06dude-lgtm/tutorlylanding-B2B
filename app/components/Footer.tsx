@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="mx-auto max-w-6xl px-6 py-20">
         <div className="grid gap-6 md:grid-cols-2">
           <div className="rounded-3xl bg-[var(--navy)] p-10 text-white">
-            <h3 className="font-display text-2xl font-black md:text-3xl">
+            <h3 className="font-display text-2xl md:text-3xl">
               {t.footer.agencyTitle}
             </h3>
             <p className="mt-3 text-white/70">{t.footer.agencyBody}</p>
@@ -22,7 +22,7 @@ export default function Footer() {
           </div>
 
           <div className="rounded-3xl border border-[rgba(4,44,68,0.12)] bg-white p-10">
-            <h3 className="font-display text-2xl font-black md:text-3xl">
+            <h3 className="font-display text-2xl md:text-3xl">
               {t.footer.tutorTitle}
             </h3>
             <p className="mt-3 text-[var(--text-muted)]">
@@ -37,7 +37,7 @@ export default function Footer() {
 
       <div className="border-t border-[rgba(4,44,68,0.08)]">
         <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-6 py-8 sm:flex-row sm:items-center">
-          <span className="font-display text-xl font-black">Tutorly</span>
+          <span className="font-display text-xl ">Tutorly</span>
           <a
             href={`mailto:${CONTACT_EMAIL}`}
             className="text-sm text-[var(--text-muted)] transition hover:text-[var(--navy)]"

@@ -58,7 +58,7 @@ export default function BecomeTutor() {
       <span className="text-sm font-bold tracking-widest text-[var(--gold-dark)] uppercase">
         {t.tutors.kicker}
       </span>
-      <h2 className="mt-5 max-w-2xl text-3xl font-black md:text-5xl">
+      <h2 className="mt-5 max-w-2xl text-3xl md:text-5xl">
         {t.tutors.title1}
         <br />
         {t.tutors.title2}{" "}
@@ -96,7 +96,7 @@ export default function BecomeTutor() {
                   className="mx-auto h-40 w-auto object-contain transition-transform duration-500 group-hover:scale-110"
                   style={{ filter: `drop-shadow(0 8px 24px ${tier.glow})` }}
                 />
-                <h3 className="font-display mt-6 text-2xl font-black">
+                <h3 className="font-display mt-6 text-2xl ">
                   {tier.name}
                 </h3>
                 <p className="mt-1 text-sm text-[var(--text-muted)]">
@@ -105,7 +105,7 @@ export default function BecomeTutor() {
                 <p className="mt-5 text-xs font-semibold tracking-wide text-[var(--text-muted)] uppercase">
                   {t.tutors.commissionLabel}
                 </p>
-                <p className="font-display text-4xl font-black text-[var(--navy)]">
+                <p className="font-display text-4xl text-[var(--navy)]">
                   {tier.commission}
                 </p>
               </div>

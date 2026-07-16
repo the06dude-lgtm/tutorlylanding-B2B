@@ -30,7 +30,7 @@ export default function ForSchools() {
         <span className="text-sm font-bold tracking-widest text-[var(--gold)] uppercase">
           {t.agencies.kicker}
         </span>
-        <h2 className="mt-5 max-w-2xl text-3xl font-black md:text-5xl">
+        <h2 className="mt-5 max-w-2xl text-3xl md:text-5xl">
           {t.agencies.title1}
           <br />
           <span className="text-[var(--gold)]">{t.agencies.titleAccent}</span>
@@ -88,6 +88,12 @@ export default function ForSchools() {
               </div>
             ))}
           </div>
+          {/* Tutorly is not partnered with these universities — the tutors just
+              study there. The logos are their trademarks, so the provenance
+              framing above and this notice have to travel with them. */}
+          <p className="mt-6 max-w-3xl text-xs leading-relaxed text-white/40">
+            {t.agencies.logosDisclaimer}
+          </p>
         </div>
 
         <div className="mt-14 flex flex-wrap items-center gap-4">
