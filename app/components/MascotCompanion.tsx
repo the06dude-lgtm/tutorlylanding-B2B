@@ -21,7 +21,19 @@ export default function MascotCompanion() {
   const [open, setOpen] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [sent, setSent] = useState(false);
+  const [teaser, setTeaser] = useState(0);
   const { t } = useLang();
+
+  // Rotate the speech bubble's line. Paused while the panel is open — he has
+  // nothing to advertise once you're already talking to him.
+  useEffect(() => {
+    if (open) return;
+    const id = setInterval(
+      () => setTeaser((i) => (i + 1) % t.widget.teasers.length),
+      3800
+    );
+    return () => clearInterval(id);
+  }, [open, t.widget.teasers.length]);
 
   useEffect(() => {
     if (!open) return;
@@ -47,7 +59,7 @@ export default function MascotCompanion() {
   };
 
   return (
-    <div className="fixed right-5 bottom-5 z-50 flex flex-col items-end gap-3 md:right-8 md:bottom-8">
+    <div className="fixed right-3 bottom-3 z-50 flex flex-col items-end gap-3 md:right-5 md:bottom-4">
       {open && (
         <div
           role="dialog"
@@ -116,38 +128,50 @@ export default function MascotCompanion() {
         </div>
       )}
 
+      {/* No pill, no label — just the mascot sitting on the page, with the
+          "?" tucked beside his stars and a speech bubble at his shoulder.
+          The badge, the bubble and the hover lift are what say "clickable";
+          the character does the rest. */}
       <button
         onClick={() => setOpen((v) => !v)}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         aria-expanded={open}
         aria-label={open ? t.widget.close : t.widget.open}
-        className="group relative flex items-center gap-2.5 rounded-full border border-[rgba(4,44,68,0.1)] bg-white py-1.5 pr-5 pl-1.5 shadow-[0_8px_28px_rgba(4,44,68,0.16)] transition-transform duration-300 hover:scale-[1.03]"
+        className="relative block h-24 w-24 transition-transform duration-300 hover:scale-105 md:h-28 md:w-28"
       >
-        {/* block + explicit box: the R3F canvas sizes to this parent, and an
-            inline span in a flex row collapses it to zero height. */}
-        <span className="relative block h-14 w-14 shrink-0">
-          <span
-            aria-hidden
-            className="absolute inset-0 rounded-full blur-xl"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(240,183,83,0.55) 0%, transparent 70%)",
-            }}
-          />
-          <span className="absolute inset-0">
-            {/* Closer than the old hero framing: with the mote ring gone there
-                is no halo to leave room for, so he fills the button. */}
-            <MascotScene hovered={hovered} distance={13} shadow={false} />
-          </span>
-        </span>
-        <span className="text-sm font-bold whitespace-nowrap text-[var(--navy)]">
-          {t.widget.open}
-        </span>
+        {/* Hidden from the a11y tree: it's ambient flavour, and the button
+            already carries a stable label. */}
         {!open && (
           <span
             aria-hidden
-            className="absolute top-0.5 left-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-[var(--gold)] text-xs font-bold text-[var(--navy)] shadow-md"
+            className="absolute top-[36%] right-[82%] flex items-center"
+          >
+            <span
+              key={teaser}
+              className="mascot-teaser relative rounded-2xl border border-[rgba(4,44,68,0.08)] bg-white px-3.5 py-2 text-sm font-bold whitespace-nowrap text-[var(--navy)] shadow-[0_6px_20px_rgba(4,44,68,0.14)]"
+            >
+              {t.widget.teasers[teaser]}
+              {/* Tail: a small square rotated to a diamond, half-tucked behind
+                  the bubble so only the pointing corner shows. */}
+              <span className="absolute top-1/2 -right-1 h-3 w-3 -translate-y-1/2 rotate-45 border-t border-r border-[rgba(4,44,68,0.08)] bg-white" />
+            </span>
+          </span>
+        )}
+        <span
+          aria-hidden
+          className="absolute inset-0 -z-10 rounded-full blur-2xl"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(240,183,83,0.45) 0%, transparent 70%)",
+          }}
+        />
+        <MascotScene hovered={hovered} distance={19} shadow={false} />
+
+        {!open && (
+          <span
+            aria-hidden
+            className="absolute top-[14%] right-[6%] flex h-6 w-6 items-center justify-center rounded-full bg-[var(--gold)] text-sm font-bold text-[var(--navy)] shadow-md"
           >
             ?
           </span>

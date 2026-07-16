@@ -185,6 +185,23 @@ h1 {
   animation: mascot-floaty 6.5s ease-in-out infinite;
 }
 
+/* The companion's speech bubble, re-keyed on every rotation so each new line
+   fades up from the mascot's shoulder rather than swapping in place. */
+@keyframes mascot-teaser-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.mascot-teaser {
+  animation: mascot-teaser-in 0.45s var(--ease) both;
+  transform-origin: bottom right;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

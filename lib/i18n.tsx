@@ -25,6 +25,13 @@ const it = {
   widget: {
     open: "Parla con noi",
     close: "Chiudi",
+    /** Cycled in the speech bubble, one at a time. */
+    teasers: [
+      "Vuoi una demo?",
+      "Ti serve aiuto?",
+      "Cerchi un tutor?",
+      "Parliamone!",
+    ],
     title: "Ti interessa Tutorly?",
     body: "Lasciaci la tua email: ti ricontattiamo in giornata.",
     emailLabel: "La tua email",
@@ -183,6 +190,12 @@ const en: Dict = {
   widget: {
     open: "Talk to us",
     close: "Close",
+    teasers: [
+      "Want a demo?",
+      "Need help?",
+      "Looking for a tutor?",
+      "Let’s talk!",
+    ],
     title: "Interested in Tutorly?",
     body: "Leave us your email and we’ll get back to you today.",
     emailLabel: "Your email",
