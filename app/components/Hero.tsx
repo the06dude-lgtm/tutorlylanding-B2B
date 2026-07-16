@@ -86,8 +86,9 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* The Orum move: photo in a hand-cut skewed frame, brand doodles
-            breaking out of its edges. */}
+        {/* The Orum move: photo taped down askew, brand doodles stuck over its
+            corners. The frame is a plain rotated rect — no clip-path — so its
+            edges stay predictable and the stickers can sit exactly on them. */}
         <div className="relative hidden md:block">
           <div
             aria-hidden
@@ -98,43 +99,47 @@ export default function Hero() {
             }}
           />
 
-          <div
-            className="relative overflow-hidden bg-white/5 shadow-[0_32px_80px_rgba(0,0,0,0.35)]"
-            style={{
-              // Irregular corners — cut by hand, not a rounded rect.
-              clipPath: "polygon(3% 1%, 100% 0, 97% 97%, 0 100%)",
-              aspectRatio: "4 / 4.4",
-            }}
-          >
-            <Image
-              src={HERO_PHOTO}
-              alt={t.hero.photoAlt}
-              fill
-              priority
-              sizes="(max-width: 768px) 0px, 42vw"
-              className="object-cover"
-            />
-          </div>
+          <div className="relative" style={{ rotate: "-1.5deg" }}>
+            <div
+              className="relative overflow-hidden rounded-sm bg-white/5 shadow-[0_32px_80px_rgba(0,0,0,0.35)]"
+              style={{ aspectRatio: "4 / 4.4" }}
+            >
+              <Image
+                src={HERO_PHOTO}
+                alt={t.hero.photoAlt}
+                fill
+                priority
+                sizes="(max-width: 768px) 0px, 42vw"
+                className="object-cover"
+              />
+            </div>
 
-          {/* Gold star + lightning, the mascot's own vocabulary, spilling
-              over the frame's edge the way Orum's stickers do. */}
-          <svg
-            aria-hidden
-            viewBox="0 0 60 60"
-            className="absolute -top-5 -left-6 h-14 w-14 drop-shadow-lg"
-          >
-            <path
-              d="M30 4 L36.5 22 L55 22.5 L40 34 L45.5 52 L30 41 L14.5 52 L20 34 L5 22.5 L23.5 22 Z"
-              fill="var(--gold-hot)"
-            />
-          </svg>
-          <svg
-            aria-hidden
-            viewBox="0 0 40 60"
-            className="absolute -right-5 bottom-8 h-16 w-11 drop-shadow-lg"
-          >
-            <path d="M24 2 L6 34 L18 34 L14 58 L34 24 L21 24 Z" fill="var(--gold)" />
-          </svg>
+            {/* Each SVG's artwork fills its own viewBox edge-to-edge, so a
+                -50% offset puts the shape's centre right on the frame's
+                corner: half on the photo, half on the navy. */}
+            <svg
+              aria-hidden
+              viewBox="0 0 60 60"
+              className="absolute -top-8 -left-8 z-10 h-16 w-16 drop-shadow-[0_6px_16px_rgba(0,0,0,0.45)]"
+              style={{ rotate: "-14deg" }}
+            >
+              <path
+                d="M30 2 L37.5 21.5 L58 22 L41.5 34.5 L47.5 55 L30 42.5 L12.5 55 L18.5 34.5 L2 22 L22.5 21.5 Z"
+                fill="var(--gold-hot)"
+              />
+            </svg>
+            <svg
+              aria-hidden
+              viewBox="0 0 40 60"
+              className="absolute -right-7 bottom-[18%] z-10 h-20 w-14 drop-shadow-[0_6px_16px_rgba(0,0,0,0.45)]"
+              style={{ rotate: "12deg" }}
+            >
+              <path
+                d="M26 1 L5 35 L17.5 35 L13 59 L35 25 L21.5 25 Z"
+                fill="var(--gold)"
+              />
+            </svg>
+          </div>
         </div>
       </div>
 

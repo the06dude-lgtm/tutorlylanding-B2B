@@ -45,9 +45,6 @@ const COLOR_OVERRIDE: Record<string, string> = {
 function MascotModel({ hovered }: { hovered: boolean }) {
   const data = useLoader(SVGLoader, MASCOT_SVG);
   const group = useRef<THREE.Group>(null);
-  /** Accumulated sway phase — advancing it slower is what "slows the spin"
-      smoothly, with no jump the way scaling elapsedTime would. */
-  const phase = useRef(0);
   const starMats = useRef(new Set<THREE.MeshPhysicalMaterial>());
 
   const { shapes, centre } = useMemo(() => {
@@ -91,30 +88,20 @@ function MascotModel({ hovered }: { hovered: boolean }) {
     return { shapes, centre: box.getCenter(new THREE.Vector3()) };
   }, [data]);
 
-  // At rest he sits centred, facing forward. Hovering wakes him: a slow sway
-  // plus a soft lean toward the cursor, and a friendly lift. Never a full
-  // spin — the back of the character doesn't exist in the art.
-  useFrame((state, delta) => {
+  // He always faces forward — no cursor tracking. Hovering only wakes the
+  // glow and gives him a small friendly lift; the personality comes from the
+  // stars and motes, not from the character swivelling to follow the mouse.
+  useFrame((state) => {
     if (!group.current) return;
-
-    let targetY = 0;
-    let targetX = 0;
-    if (hovered) {
-      phase.current += delta * 0.4;
-      const t = phase.current;
-      const { x, y } = state.pointer;
-      targetY = Math.sin(t * 0.35) * 0.1 + x * 0.35;
-      targetX = -y * 0.18 + Math.sin(t * 0.5) * 0.03;
-    }
 
     group.current.rotation.y = THREE.MathUtils.lerp(
       group.current.rotation.y,
-      targetY,
+      0,
       0.06
     );
     group.current.rotation.x = THREE.MathUtils.lerp(
       group.current.rotation.x,
-      targetX,
+      0,
       0.06
     );
 
@@ -160,69 +147,6 @@ function MascotModel({ hovered }: { hovered: boolean }) {
           </mesh>
         ))}
       </group>
-    </group>
-  );
-}
-
-/**
- * A loose ring of gold motes around the mascot. Kept mounted and faded via
- * opacity so activation never pops — it breathes in.
- */
-function Particles({ active }: { active: boolean }) {
-  const group = useRef<THREE.Group>(null);
-
-  const material = useMemo(
-    () =>
-      new THREE.MeshBasicMaterial({
-        color: "#ffbb04",
-        transparent: true,
-        opacity: 0,
-        depthWrite: false,
-      }),
-    []
-  );
-  const geometry = useMemo(() => new THREE.SphereGeometry(1, 10, 10), []);
-
-  const motes = useMemo(
-    () =>
-      Array.from({ length: 22 }, () => {
-        const a = Math.random() * Math.PI * 2;
-        const r = 5.5 + Math.random() * 3;
-        return {
-          position: [
-            Math.cos(a) * r,
-            Math.sin(a) * r * 0.8,
-            (Math.random() - 0.5) * 3,
-          ] as [number, number, number],
-          scale: 0.07 + Math.random() * 0.12,
-        };
-      }),
-    []
-  );
-
-  useFrame((_, delta) => {
-    material.opacity = THREE.MathUtils.lerp(
-      material.opacity,
-      active ? 0.85 : 0,
-      0.08
-    );
-    if (group.current) {
-      group.current.visible = material.opacity > 0.01;
-      group.current.rotation.z += delta * (active ? 0.25 : 0.05);
-    }
-  });
-
-  return (
-    <group ref={group}>
-      {motes.map(({ position, scale }, i) => (
-        <mesh
-          key={i}
-          geometry={geometry}
-          material={material}
-          position={position}
-          scale={scale}
-        />
-      ))}
     </group>
   );
 }
@@ -283,11 +207,10 @@ export default function MascotScene({
       <pointLight position={[4, -4, 8]} intensity={1.2} color="#f0b753" />
 
       <Suspense fallback={null}>
-        {/* rotationIntensity kept tiny so the resting pose stays face-front. */}
-        <Float speed={1.5} rotationIntensity={0.05} floatIntensity={0.7}>
+        {/* Bob only: rotationIntensity 0 keeps him square to the camera. */}
+        <Float speed={1.5} rotationIntensity={0} floatIntensity={0.7}>
           <MascotModel hovered={hovered} />
         </Float>
-        <Particles active={hovered} />
         {/* Kept mounted and faded rather than removed — unmounting mid-frame
             causes a visible hitch. */}
         <ContactShadows

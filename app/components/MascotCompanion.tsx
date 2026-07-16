@@ -1,40 +1,27 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { DEMO_EMAIL } from "@/lib/config";
 import { useLang } from "@/lib/i18n";
 
 const MascotScene = dynamic(() => import("./MascotScene"), { ssr: false });
 
 /**
- * The mascot lives here now — docked in the corner rather than in the hero,
- * where a click on him read as decoration and nobody thought to try it. As a
- * corner button with a label and a badge he's unambiguously interactive.
+ * The mascot lives here rather than in the hero, where a click on him read as
+ * decoration and nobody thought to try it. As a corner button with a label and
+ * a badge he's unambiguously interactive, and he's present from the first
+ * paint so the offer to talk never has to be scrolled for.
  *
  * Two paths, because the page has two kinds of visitor with an unanswered
  * question: a prospect who wants to be contacted (email capture) and an
  * existing customer who needs help (support).
  */
 export default function MascotCompanion() {
-  const [docked, setDocked] = useState(false);
   const [open, setOpen] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [sent, setSent] = useState(false);
-  const panelRef = useRef<HTMLDivElement>(null);
   const { t } = useLang();
-
-  useEffect(() => {
-    const onScroll = () => {
-      // Dock once the hero is mostly out of view.
-      const past = window.scrollY > window.innerHeight * 0.6;
-      setDocked(past);
-      if (!past) setOpen(false);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -59,13 +46,10 @@ export default function MascotCompanion() {
     setSent(true);
   };
 
-  if (!docked) return null;
-
   return (
     <div className="fixed right-5 bottom-5 z-50 flex flex-col items-end gap-3 md:right-8 md:bottom-8">
       {open && (
         <div
-          ref={panelRef}
           role="dialog"
           aria-label={t.widget.title}
           className="mascot-pop w-[19rem] rounded-3xl border border-[rgba(4,44,68,0.1)] bg-white p-5 shadow-[0_2px_8px_rgba(4,44,68,0.05),0_24px_56px_rgba(4,44,68,0.2)]"
@@ -152,7 +136,9 @@ export default function MascotCompanion() {
             }}
           />
           <span className="absolute inset-0">
-            <MascotScene hovered={hovered} distance={17} shadow={false} />
+            {/* Closer than the old hero framing: with the mote ring gone there
+                is no halo to leave room for, so he fills the button. */}
+            <MascotScene hovered={hovered} distance={13} shadow={false} />
           </span>
         </span>
         <span className="text-sm font-bold whitespace-nowrap text-[var(--navy)]">
