@@ -143,21 +143,29 @@ const it = {
   },
   tutors: {
     divider: "🎓 Sei un tutor? Questa parte è per te",
-    kicker: "Per i tutor",
     title1: "Sali di livello.",
     title2: "Guadagna",
     titleAccent: "di più",
     body: "Ogni lezione ti avvicina al livello successivo — e ogni livello ti lascia più soldi in tasca. Nessuna commissione nascosta, nessuna gara al ribasso.",
     lessonsLabel: ["0–10 lezioni", "10–50 lezioni", "50–200 lezioni", "200+ lezioni"],
     commissionLabel: "Commissione",
+    cert: {
+      kicker: "Certificato di Eccellenza",
+      title: "Il tuo lavoro, dimostrabile su LinkedIn.",
+      body: "Dopo 12 mesi e almeno 20 lezioni ricevi il Certificato di Eccellenza Tutorly: un attestato verificato che pubblichi sul tuo profilo LinkedIn in un clic e aggiungi al CV.",
+      points: [
+        "Si aggiunge alle certificazioni del profilo LinkedIn, con Tutorly come ente emittente.",
+        "Riporta le ore insegnate, le materie e il livello raggiunto — verificati da noi.",
+        "Resta tuo per sempre, anche se smetti di insegnare con Tutorly.",
+      ],
+      linkedinLabel: "Licenze e certificazioni",
+      linkedinCert: "Certificato di Eccellenza — Tutor Gold",
+      linkedinCaption: "Come appare sul tuo profilo.",
+    },
     perks: [
       {
         title: "Più insegni, più guadagni",
         body: "La commissione scende dal 25% al 15% man mano che sali di livello.",
-      },
-      {
-        title: "Certificato verificato",
-        body: "Dopo 12 mesi e 20+ lezioni ottieni il Certificato di Eccellenza per LinkedIn e CV.",
       },
       {
         title: "Studenti già pronti",
@@ -173,8 +181,14 @@ const it = {
     agencyCta: "Attiva il tuo tutoring",
     tutorTitle: "Vuoi insegnare?",
     tutorBody:
-      "Studenti già pronti, commissioni che scendono. Parti da Bronze.",
+      "Studenti già pronti, commissioni che scendono, e il Certificato di Eccellenza per il tuo LinkedIn.",
     tutorCta: "Diventa un tutor",
+    blurb:
+      "La rete di tutor selezionati che porta le ripetizioni dentro la tua azienda — e fa crescere chi le insegna.",
+    navLabel: "Naviga",
+    contactLabel: "Contatti",
+    support: "Assistenza clienti",
+    rights: "Tutti i diritti riservati.",
   },
 };
 
@@ -307,21 +321,29 @@ const en: Dict = {
   },
   tutors: {
     divider: "🎓 Are you a tutor? This part is for you",
-    kicker: "For tutors",
     title1: "Level up.",
     title2: "Earn",
     titleAccent: "more",
     body: "Every lesson brings you closer to the next tier — and every tier leaves more money in your pocket. No hidden fees, no race to the bottom.",
     lessonsLabel: ["0–10 lessons", "10–50 lessons", "50–200 lessons", "200+ lessons"],
     commissionLabel: "Commission",
+    cert: {
+      kicker: "Certificate of Excellence",
+      title: "Your work, provable on LinkedIn.",
+      body: "After 12 months and at least 20 lessons you receive the Tutorly Certificate of Excellence: a verified credential you post to your LinkedIn profile in one click and add to your CV.",
+      points: [
+        "Adds to your LinkedIn profile’s certifications, with Tutorly as the issuing organisation.",
+        "Shows hours taught, subjects and the tier you reached — all verified by us.",
+        "It’s yours for good, even if you stop teaching with Tutorly.",
+      ],
+      linkedinLabel: "Licenses & certifications",
+      linkedinCert: "Certificate of Excellence — Gold Tutor",
+      linkedinCaption: "How it looks on your profile.",
+    },
     perks: [
       {
         title: "Teach more, earn more",
         body: "Commission drops from 25% to 15% as you climb the tiers.",
-      },
-      {
-        title: "Verified certificate",
-        body: "After 12 months and 20+ lessons you earn the Certificate of Excellence for LinkedIn and your CV.",
       },
       {
         title: "Students ready to go",
@@ -335,8 +357,15 @@ const en: Dict = {
     agencyBody: "We launch your tutoring service in days. Zero setup costs.",
     agencyCta: "Launch your tutoring",
     tutorTitle: "Want to teach?",
-    tutorBody: "Students ready to go, commissions that drop. Start from Bronze.",
+    tutorBody:
+      "Students ready to go, commissions that drop, and a Certificate of Excellence for your LinkedIn.",
     tutorCta: "Become a tutor",
+    blurb:
+      "The screened tutor network that brings tutoring inside your business — and grows the people who teach it.",
+    navLabel: "Explore",
+    contactLabel: "Contact",
+    support: "Customer support",
+    rights: "All rights reserved.",
   },
 };
 

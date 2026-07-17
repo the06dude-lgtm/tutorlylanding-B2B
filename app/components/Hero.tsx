@@ -12,7 +12,7 @@ import { useLang } from "@/lib/i18n";
 const CAMPUSES = ["Bocconi", "Politecnico", "Cattolica", "LUISS", "Statale"];
 
 /** Licensed stock, pre-cropped to the frame's 4:4.4. */
-const HERO_PHOTO = "/hero.png";
+const HERO_PHOTO = "/landing-page-photo.png";
 
 export default function Hero() {
   const { t } = useLang();
