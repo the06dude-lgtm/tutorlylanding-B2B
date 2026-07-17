@@ -43,7 +43,8 @@ const it = {
   },
   hero: {
     title1: "Il più grande network",
-    title2: "di studenti (e non)",
+    title2: "di studenti",
+    title2Aside: "(e non)",
     titleAccent: "pronti ad aiutarti.",
     body: "Tutorly mette in contatto chi ha bisogno di ripetizioni con chi sa insegnarle. Studenti, professionisti, tutor verificati — dalle medie all’università. E ora anche al servizio delle imprese.",
     ctaPrimary: "Trova il tuo tutor",
@@ -221,7 +222,8 @@ const en: Dict = {
   },
   hero: {
     title1: "The largest network",
-    title2: "of students (and more)",
+    title2: "of students",
+    title2Aside: "(and more)",
     titleAccent: "ready to help you.",
     body: "Tutorly connects the people who need tutoring with the people who know how to teach it. Students, professionals, verified tutors — from middle school to university. And now at the service of businesses too.",
     ctaPrimary: "Find your tutor",

@@ -15,7 +15,7 @@ const CAMPUSES = ["Bocconi", "Politecnico", "Cattolica", "LUISS", "Statale"];
 const HERO_PHOTO = "/landing-page-photo.png";
 
 export default function Hero() {
-  const { t } = useLang();
+  const { lang, t } = useLang();
 
   return (
     <section className="relative overflow-hidden bg-[var(--navy)] pt-28 pb-16 text-white md:pt-36 md:pb-20">
@@ -34,7 +34,13 @@ export default function Hero() {
           <h1 className="text-[2.5rem] leading-[1.06] md:text-[3.5rem]">
             {t.hero.title1}
             <br />
-            {t.hero.title2}
+            {t.hero.title2}{" "}
+            {/* Italian fits at full size and stays there. Only the English
+                aside is stepped down — "of students (and more)" overflows the
+                column at full size and breaks the line structure. */}
+            <span className={lang === "en" ? "text-[0.72em]" : undefined}>
+              {t.hero.title2Aside}
+            </span>
             <br />
             {/* The brand's own gold underline, drawn loose like a marker
                 stroke — Orum's trick for making type feel hand-made. */}
