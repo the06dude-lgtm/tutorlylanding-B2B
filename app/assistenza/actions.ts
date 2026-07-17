@@ -2,15 +2,7 @@
 
 import { Resend } from "resend";
 import { CONTACT_EMAIL } from "@/lib/config";
-
-/**
- * Envelope sender. MUST be on a domain verified in Resend — tutorly.it is
- * verified at the root, which is what authorises the from address. A
- * gmail.com from would be rejected: we can't DKIM-sign for Google's domain.
- * Lives here rather than lib/config.ts because that module is bundled into
- * client components, where server env vars read as undefined.
- */
-const SUPPORT_FROM = process.env.EMAIL_FROM ?? "Tutorly <assistenza@tutorly.it>";
+import { EMAIL_FROM, EMAIL_MAX, EMAIL_RE } from "@/lib/email";
 
 export type SupportState = {
   status: "idle" | "ok" | "error";
@@ -18,8 +10,6 @@ export type SupportState = {
   messageKey?: string;
   fieldErrors?: Partial<Record<"name" | "email" | "message", true>>;
 };
-
-const MAX = { name: 100, email: 200, message: 4000 };
 
 /**
  * Support form -> our inbox, via Resend (already DKIM-verified on tutorly.it).
@@ -39,10 +29,10 @@ export async function sendSupportRequest(
   }
 
   const fieldErrors: SupportState["fieldErrors"] = {};
-  if (!name || name.length > MAX.name) fieldErrors.name = true;
-  if (!email || email.length > MAX.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+  if (!name || name.length > EMAIL_MAX.name) fieldErrors.name = true;
+  if (!email || email.length > EMAIL_MAX.email || !EMAIL_RE.test(email))
     fieldErrors.email = true;
-  if (!message || message.length > MAX.message) fieldErrors.message = true;
+  if (!message || message.length > EMAIL_MAX.message) fieldErrors.message = true;
 
   if (Object.keys(fieldErrors).length) {
     return { status: "error", messageKey: "invalid", fieldErrors };
@@ -58,7 +48,7 @@ export async function sendSupportRequest(
   try {
     const resend = new Resend(apiKey);
     const { error } = await resend.emails.send({
-      from: SUPPORT_FROM,
+      from: EMAIL_FROM,
       to: CONTACT_EMAIL,
       // Sending as our own domain keeps DKIM aligned; the visitor's address
       // goes in reply-to so hitting Reply reaches them directly.

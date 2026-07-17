@@ -1,8 +1,8 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
-import { DEMO_EMAIL } from "@/lib/config";
+import { useActionState, useEffect, useState } from "react";
+import { captureLead, type LeadState } from "@/app/actions/lead";
 import { useLang } from "@/lib/i18n";
 
 const MascotScene = dynamic(() => import("./MascotScene"), { ssr: false });
@@ -17,12 +17,18 @@ const MascotScene = dynamic(() => import("./MascotScene"), { ssr: false });
  * question: a prospect who wants to be contacted (email capture) and an
  * existing customer who needs help (support).
  */
+const INITIAL_LEAD: LeadState = { status: "idle" };
+
 export default function MascotCompanion() {
   const [open, setOpen] = useState(false);
   const [hovered, setHovered] = useState(false);
-  const [sent, setSent] = useState(false);
   const [teaser, setTeaser] = useState(0);
   const { t } = useLang();
+  const [state, formAction, pending] = useActionState(
+    captureLead,
+    INITIAL_LEAD
+  );
+  const sent = state.status === "ok";
 
   // Rotate the speech bubble's line. Paused while the panel is open — he has
   // nothing to advertise once you're already talking to him.
@@ -42,22 +48,6 @@ export default function MascotCompanion() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  // Reopening after a send should offer a fresh form, not a stale receipt.
-  useEffect(() => {
-    if (!open) setSent(false);
-  }, [open]);
-
-  // No backend on this static site: hand the address to the user's mail client
-  // with the body prefilled. Swap for a POST when an endpoint exists.
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const email = new FormData(e.currentTarget).get("email");
-    window.location.href = `mailto:${DEMO_EMAIL}?subject=${encodeURIComponent(
-      "Richiesta info Tutorly"
-    )}&body=${encodeURIComponent(`Email di contatto: ${email}\n\n`)}`;
-    setSent(true);
-  };
-
   return (
     <div className="fixed right-3 bottom-3 z-50 flex flex-col items-end gap-3 md:right-5 md:bottom-4">
       {open && (
@@ -69,7 +59,10 @@ export default function MascotCompanion() {
           <p className="font-display text-lg">{t.widget.title}</p>
 
           {sent ? (
-            <p className="mt-2 flex items-start gap-2 text-sm text-[var(--text-muted)]">
+            <p
+              aria-live="polite"
+              className="mt-2 flex items-start gap-2 text-sm text-[var(--text-muted)]"
+            >
               <span
                 aria-hidden
                 className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[0.65rem] font-bold text-[var(--navy)]"
@@ -84,7 +77,17 @@ export default function MascotCompanion() {
               <p className="mt-1.5 text-sm text-[var(--text-muted)]">
                 {t.widget.body}
               </p>
-              <form onSubmit={onSubmit} className="mt-4">
+              <form action={formAction} className="mt-4">
+                {/* Honeypot: off-screen, unfocusable, never autofilled. */}
+                <div aria-hidden className="absolute left-[-9999px]">
+                  <label htmlFor="widget-company">Company</label>
+                  <input
+                    id="widget-company"
+                    name="company"
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
                 <label htmlFor="widget-email" className="sr-only">
                   {t.widget.emailLabel}
                 </label>
@@ -93,14 +96,29 @@ export default function MascotCompanion() {
                   name="email"
                   type="email"
                   required
+                  maxLength={200}
+                  aria-invalid={state.status === "error" ? true : undefined}
                   placeholder={t.widget.emailPlaceholder}
-                  className="w-full rounded-xl border border-[rgba(4,44,68,0.14)] bg-[var(--off-white)] px-3.5 py-2.5 text-sm outline-none transition focus:border-[var(--gold)] focus:bg-white focus:ring-2 focus:ring-[var(--gold)]/25"
+                  className={`w-full rounded-xl border bg-[var(--off-white)] px-3.5 py-2.5 text-sm outline-none transition focus:bg-white focus:ring-2 ${
+                    state.status === "error"
+                      ? "border-[#c2410c] focus:border-[#c2410c] focus:ring-[#c2410c]/20"
+                      : "border-[rgba(4,44,68,0.14)] focus:border-[var(--gold)] focus:ring-[var(--gold)]/25"
+                  }`}
                 />
+                {state.status === "error" && state.messageKey && (
+                  <p
+                    aria-live="polite"
+                    className="mt-2 text-xs font-semibold text-[#9a3412]"
+                  >
+                    {t.widget[state.messageKey as "invalidEmail" | "failed"]}
+                  </p>
+                )}
                 <button
                   type="submit"
+                  disabled={pending}
                   className="btn-primary mt-2.5 w-full !px-4 !py-2.5 text-sm"
                 >
-                  {t.widget.submit}
+                  {pending ? t.widget.submitting : t.widget.submit}
                 </button>
               </form>
             </>
