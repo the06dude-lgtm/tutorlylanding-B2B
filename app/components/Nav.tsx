@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { SIGNUP_URL } from "@/lib/config";
+import { signupHref } from "@/lib/config";
 import { useLang, type Lang } from "@/lib/i18n";
 
 const LANGS: { code: Lang; flag: string; label: string }[] = [
@@ -96,7 +96,7 @@ export default function Nav() {
           </a>
         </div>
 
-        <a href={SIGNUP_URL} className="btn-primary !px-5 !py-2.5 text-sm">
+        <a href={signupHref("tutor")} className="btn-primary !px-5 !py-2.5 text-sm">
           {t.nav.cta}
         </a>
       </nav>

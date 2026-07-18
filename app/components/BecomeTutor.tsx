@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { SIGNUP_URL } from "@/lib/config";
+import { signupHref } from "@/lib/config";
 import { useLang } from "@/lib/i18n";
 
 // The tier system, straight from the live app (LandingPage.js). Each tier is
@@ -210,7 +210,7 @@ export default function BecomeTutor() {
         </div>
 
         <div className="mt-12">
-          <a href={SIGNUP_URL} className="btn-primary">
+          <a href={signupHref("tutor")} className="btn-primary">
             {t.tutors.cta}
           </a>
         </div>

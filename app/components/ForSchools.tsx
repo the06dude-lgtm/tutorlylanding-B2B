@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { DEMO_EMAIL } from "@/lib/config";
+import { signupHref } from "@/lib/config";
 import { useLang } from "@/lib/i18n";
 
 const UNIVERSITIES = [
@@ -59,7 +59,7 @@ export default function ForSchools() {
             <p className="mt-3 max-w-2xl text-white/70">{t.agencies.niche.body}</p>
           </div>
           <a
-            href={`mailto:${DEMO_EMAIL}`}
+            href={signupHref("agency")}
             className="btn-primary mt-6 shrink-0 md:mt-0"
           >
             {t.agencies.niche.cta}
@@ -97,7 +97,7 @@ export default function ForSchools() {
         </div>
 
         <div className="mt-14 flex flex-wrap items-center gap-4">
-          <a href={`mailto:${DEMO_EMAIL}`} className="btn-primary">
+          <a href={signupHref("agency")} className="btn-primary">
             {t.agencies.ctaDemo}
           </a>
           <a href="#come-funziona" className="btn-ghost-light">

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { SIGNUP_URL } from "@/lib/config";
+import { signupHref } from "@/lib/config";
 import { useLang } from "@/lib/i18n";
 
 /**
@@ -69,7 +69,7 @@ export default function Hero() {
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
-            <a href={SIGNUP_URL} className="btn-primary">
+            <a href={signupHref("student")} className="btn-primary">
               {t.hero.ctaPrimary}
             </a>
             <a href="#partner" className="btn-ghost-light">

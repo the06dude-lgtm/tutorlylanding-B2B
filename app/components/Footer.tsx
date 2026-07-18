@@ -1,6 +1,6 @@
 "use client";
 
-import { CONTACT_EMAIL, DEMO_EMAIL, SIGNUP_URL } from "@/lib/config";
+import { CONTACT_EMAIL, signupHref } from "@/lib/config";
 import { useLang } from "@/lib/i18n";
 
 // Mirrors the nav's anchors, and reuses its labels so the two never drift.
@@ -23,7 +23,7 @@ export default function Footer() {
               {t.footer.agencyTitle}
             </h3>
             <p className="mt-3 text-white/70">{t.footer.agencyBody}</p>
-            <a href={`mailto:${DEMO_EMAIL}`} className="btn-primary mt-7">
+            <a href={signupHref("agency")} className="btn-primary mt-7">
               {t.footer.agencyCta}
             </a>
           </div>
@@ -35,7 +35,7 @@ export default function Footer() {
             <p className="mt-3 text-[var(--text-muted)]">
               {t.footer.tutorBody}
             </p>
-            <a href={SIGNUP_URL} className="btn-secondary mt-7">
+            <a href={signupHref("tutor")} className="btn-secondary mt-7">
               {t.footer.tutorCta}
             </a>
           </div>
