@@ -10,28 +10,24 @@ import { useLang } from "@/lib/i18n";
 const TIERS = [
   {
     name: "Bronze",
-    commission: "25%",
     img: "/tiers/mascot-tier-1-bronze.png",
     glow: "rgba(205,127,50,0.35)",
     bar: "linear-gradient(90deg, #cd7f32, #e8a56b)",
   },
   {
     name: "Silver",
-    commission: "22%",
     img: "/tiers/mascot-tier-2-silver.png",
     glow: "rgba(192,192,192,0.4)",
     bar: "linear-gradient(90deg, #9aa4ad, #d7dde2)",
   },
   {
     name: "Gold",
-    commission: "20%",
     img: "/tiers/mascot-tier-3-gold.png",
     glow: "rgba(240,183,83,0.45)",
     bar: "var(--gradient-gold)",
   },
   {
     name: "Diamond",
-    commission: "15%",
     img: "/tiers/mascot-tier-4-diamond.png",
     glow: "rgba(0,212,255,0.4)",
     bar: "linear-gradient(90deg, #00d4ff, #7de9ff)",
@@ -101,12 +97,6 @@ export default function BecomeTutor() {
                 </h3>
                 <p className="mt-1 text-sm text-[var(--text-muted)]">
                   {t.tutors.lessonsLabel[i]}
-                </p>
-                <p className="mt-5 text-xs font-semibold tracking-wide text-[var(--text-muted)] uppercase">
-                  {t.tutors.commissionLabel}
-                </p>
-                <p className="font-display text-4xl text-[var(--navy)]">
-                  {tier.commission}
                 </p>
               </div>
           </div>

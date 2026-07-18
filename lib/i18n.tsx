@@ -152,7 +152,6 @@ const it = {
     titleAccent: "di più",
     body: "Ogni lezione ti avvicina al livello successivo — e ogni livello ti lascia più soldi in tasca. Nessuna commissione nascosta, nessuna gara al ribasso.",
     lessonsLabel: ["0–10 lezioni", "10–50 lezioni", "50–200 lezioni", "200+ lezioni"],
-    commissionLabel: "Commissione",
     cert: {
       kicker: "Certificato di Eccellenza",
       title: "Il tuo lavoro, dimostrabile su LinkedIn.",
@@ -385,7 +384,6 @@ const en: Dict = {
     titleAccent: "more",
     body: "Every lesson brings you closer to the next tier — and every tier leaves more money in your pocket. No hidden fees, no race to the bottom.",
     lessonsLabel: ["0–10 lessons", "10–50 lessons", "50–200 lessons", "200+ lessons"],
-    commissionLabel: "Commission",
     cert: {
       kicker: "Certificate of Excellence",
       title: "Your work, provable on LinkedIn.",
