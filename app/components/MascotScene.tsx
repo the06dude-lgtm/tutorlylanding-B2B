@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
-import { ContactShadows, Environment, Float } from "@react-three/drei";
+import { ContactShadows, Float } from "@react-three/drei";
 import { Suspense, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { SVGLoader } from "three/examples/jsm/loaders/SVGLoader.js";
@@ -195,16 +195,21 @@ export default function MascotScene({
     >
       <CameraRig distance={distance} />
       {/* Soft, neutral key light so the brand colours stay true, with a warm
-          gold fill and a cool rim to give the extrusion its edges. */}
-      <ambientLight intensity={1.1} />
+          gold fill and a cool rim to give the extrusion its edges. These lights
+          carry the whole scene on their own — no external HDR environment, which
+          on mobile would fail to fetch from the drei CDN and leave the mascot
+          rendering as a flat black silhouette. */}
+      <ambientLight intensity={1.6} />
+      <hemisphereLight args={["#ffffff", "#dfe7ee", 0.9]} />
       <directionalLight
         position={[5, 8, 12]}
-        intensity={2.2}
+        intensity={2.4}
         castShadow
         shadow-mapSize={[1024, 1024]}
       />
-      <directionalLight position={[-7, 4, 6]} intensity={0.7} color="#ffffff" />
-      <pointLight position={[4, -4, 8]} intensity={1.2} color="#f0b753" />
+      <directionalLight position={[-7, 4, 6]} intensity={0.8} color="#ffffff" />
+      <pointLight position={[4, -4, 8]} intensity={1.3} color="#f0b753" />
+      <pointLight position={[-4, 2, 6]} intensity={0.6} color="#ffffff" />
 
       <Suspense fallback={null}>
         {/* Bob only: rotationIntensity 0 keeps him square to the camera. */}
@@ -221,7 +226,6 @@ export default function MascotScene({
           far={6}
           color="#042c44"
         />
-        <Environment preset="city" environmentIntensity={0.35} />
       </Suspense>
     </Canvas>
   );

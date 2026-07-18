@@ -146,7 +146,7 @@ const it = {
     ],
   },
   tutors: {
-    divider: "🎓 Sei un tutor? Questa parte è per te",
+    divider: "Sei un tutor? Questa parte è per te",
     title1: "Sali di livello.",
     title2: "Guadagna",
     titleAccent: "di più",
@@ -379,7 +379,7 @@ const en: Dict = {
     ],
   },
   tutors: {
-    divider: "🎓 Are you a tutor? This part is for you",
+    divider: "Are you a tutor? This part is for you",
     title1: "Level up.",
     title2: "Earn",
     titleAccent: "more",

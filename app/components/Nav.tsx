@@ -61,16 +61,16 @@ export default function Nav() {
             ))}
           </div>
 
-          <a href="#" className="flex items-center">
-            {/* The wordmark is navy artwork; over the navy hero it would
+          <a href="/" aria-label="Tutorly — home" className="flex items-center">
+            {/* The logo is navy artwork; over the navy hero it would
                 disappear, so invert it to white until the cream bar arrives. */}
             <Image
-              src="/tutorly-logo.png"
+              src="/tutorly-logo-combined.png"
               alt="Tutorly"
-              width={160}
-              height={59}
+              width={264}
+              height={75}
               priority
-              className="h-9 w-auto transition-[filter] duration-300"
+              className="h-8 w-auto transition-[filter] duration-300"
               style={{
                 filter: scrolled
                   ? "none"
