@@ -46,7 +46,7 @@ const it = {
   },
   hero: {
     title1: "Il più grande network",
-    title2: "di menti",
+    title2: "di menti preparate",
     titleAccent: "pronte ad aiutarti.",
     body: "Tutorly mette in contatto chi ha bisogno di ripetizioni con chi sa insegnarle. Studenti, professionisti, tutor verificati — dalle medie all’università. E ora anche al servizio delle imprese.",
     ctaPrimary: "Trova il tuo tutor",
