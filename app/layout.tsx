@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/next";
 import { LanguageProvider } from "@/lib/i18n";
 import "./globals.css";
 
@@ -28,6 +29,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full">
         <LanguageProvider>{children}</LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
